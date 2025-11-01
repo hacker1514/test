@@ -31,7 +31,7 @@ instruction_text = (
     "Instructions :\n"
     "--> Read all instructions carefully.\n"
     "--> Do not attempt anything outside the Test.\n"
-    "--> System will auto-start at exact 10:00:00 PM.\n"
+    "--> System will auto-start at exact 09:00:00 PM.\n"
     "--> Test duration: 30 minutes.\n"
     "--> Submit button appears after 20 minutes.\n"
     "--> Each question carry 1 mark.\n"
@@ -259,7 +259,7 @@ def submit_quiz():
 def update_loop():
     global quiz_started, quiz_start_time
     now = datetime.now()
-    target = now.replace(hour=22, minute=00, second=0, microsecond=0) #here niranjan----->Time Please
+    target = now.replace(hour=21, minute=00, second=0, microsecond=0) #here niranjan----->Time Please
     if now >= target and (now - target).days > 0:
         target += timedelta(days=1)
     if now < target:
