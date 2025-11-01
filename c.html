@@ -1,0 +1,101 @@
+<!DOCTYPE html>                          <html lang="en">                         <head>
+<meta charset="UTF-8">                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Generator</title>     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e6e6e6;
+    margin: 0;
+  }
+  .certificate {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    background-image: url('https://hacker1514.github.io/test/c.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid #000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+  .name {
+    position: absolute;
+    top: 184px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    white-space: nowrap;
+  }
+  .date {
+    position: absolute;
+    top: 332px;
+    left: 152px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+  }
+  button {
+    margin-top: 25px;
+    padding: 10px 25px;
+    font-size: 16px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #005fa3;
+  }
+</style>
+</head>
+<body>
+  <div class="certificate" id="certificate">
+    <div class="name" id="username"></div>
+    <div class="date" id="date"></div>
+  </div>
+  <button onclick="downloadCertificate()">Download Certificate</button>
+
+<script>
+  // Check if certificate is already issued
+  if (localStorage.getItem("kc") === "issued") {
+    alert("Certificate already issued. Any doubt contact Developer.");
+  } else {
+    let name = prompt("Enter your name for the certificate:");
+    if (!name) name = "Anonymous";
+    document.getElementById("username").textContent = name;
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yy = String(today.getFullYear()).slice(-2);
+    document.getElementById("date").textContent = `${dd}/${mm}/${yy}`;
+  }
+
+  function downloadCertificate() {
+    if (localStorage.getItem("kc") === "issued") {
+      alert("Certificate already issued. Any doubt contact Developer.");
+      return;
+    }
+
+    const cert = document.getElementById("certificate");
+    html2canvas(cert, { scale: 3, useCORS: true, backgroundColor: null }).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "certificate.png";
+      link.href = canvas.toDataURL("image/png", 1.0);
+      link.click();
+
+      // Mark certificate as issued
+      localStorage.setItem("kc", "issued");
+      alert("Certificate issued successfully!");
+    });
+  }
+</script>
+</body>
+</html>
