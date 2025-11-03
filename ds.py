@@ -17,8 +17,8 @@ w.bind_all("<KeyRelease>", f)
 w.bind_all("<Button>", lambda e: "break")
 w.bind_all("<Motion>", lambda e: "break")
 
-th = 16
-tm = 38
+th = 17
+tm = 0
 ts = 0
 c = datetime.now()
 ch = c.hour
@@ -43,7 +43,7 @@ instruction_text = (
     "--> Do not attempt anything outside the Test.\n"
     "--> System will auto-start at exact "+str(th)+"H: "+str(tm)+"M: "+str(ts)+"S .\n"
     "--> Test duration: 30 minutes.\n"
-    "--> Submit button appears after 20 minutes.\n"
+    "--> Submit button appears after 15 minutes.\n"
     "--> Each question carry 1 mark.\n"
     "--> Any Problem Please Contact Niranjan.\n"
     "--> Certificate Provides those who score more than 15.\n"
@@ -285,7 +285,7 @@ def update_loop():
         remaining_seconds = max(0, 30 * 60 - int(elapsed.total_seconds()))
         remaining_min, remaining_sec = divmod(remaining_seconds, 60)
         timer_label.config(text=f"Remaining Time: {remaining_min:02d}M : {remaining_sec:02d}S")
-        if elapsed.total_seconds() >= 20 * 60:
+        if elapsed.total_seconds() >= 15 * 60:
             submit_btn.pack(side=RIGHT, padx=12, pady=6)
         else:
             submit_btn.pack_forget()
