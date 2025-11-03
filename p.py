@@ -18,7 +18,7 @@ w.bind_all("<Button>", lambda e: "break")
 w.bind_all("<Motion>", lambda e: "break")
 
 th = 13
-tm = 10
+tm = 15
 ts = 0
 c = datetime.now()
 ch = c.hour
@@ -227,8 +227,8 @@ def submit_quiz():
         widget.destroy()
     result_label = Label(w, text=f"Your Score: {correct_count} / {len(questions)}", font=("Arial", 40, "bold"), fg="white", bg="#1c1c1c")
     result_label.pack(pady=40)
-    if correct_count > 15:
-        webbrowser.open("https://hacker1514.github.io/test/python.html")
+    if correct_count >= 15:
+        webbrowser.open("https://hacker1514.github.io/test/c.html")
     exit_btn = Button(w, text="Exit", font=("Arial", 18, "bold"), bg="red", fg="white", command=w.destroy)
     exit_btn.pack(pady=20)
     score_shown = True
@@ -241,7 +241,7 @@ def update_loop():
         diff = target - now
         h, r = divmod(int(diff.total_seconds()), 3600)
         m, s = divmod(r, 60)
-        timer_label.config(text=f"Quiz starts in {h:02d}H : {m:02d}M : {s:02d}S")
+        timer_label.config(text=f"Test starts in {h:02d}H : {m:02d}M : {s:02d}S")
     elif now >= target and not quiz_started:
         quiz_started = True
         quiz_start_time = datetime.now()
