@@ -18,7 +18,7 @@ w.bind_all("<Button>", lambda e: "break")
 w.bind_all("<Motion>", lambda e: "break")
 
 th = 16
-tm = 30
+tm = 38
 ts = 0
 c = datetime.now()
 ch = c.hour
