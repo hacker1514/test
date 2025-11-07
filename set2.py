@@ -17,8 +17,8 @@ w.bind_all("<KeyRelease>", f)
 w.bind_all("<Button>", lambda e: "break")
 w.bind_all("<Motion>", lambda e: "break")
 
-th = 8
-tm = 33
+th = 11
+tm = 40
 ts = 0
 c = datetime.now()
 ch = c.hour
